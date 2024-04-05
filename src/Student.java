@@ -1,4 +1,6 @@
+import java.util.*;
 public class Student {
+    //When it comes to adding new entries,enums are not really useful or necessary.
     enum Students{
         Student1("001", "Henry", 'M', "123 Pine Street", "Active"),
         Student2("002", "Martha", 'F', "Pine Street", "Graduated"),
@@ -46,7 +48,7 @@ public class Student {
     public String getTeacherName(){
         return teacherName;
     }
-    
+
     public void searchByID(String id){
         for(Students student:Students.values()){
             if(student.getID().equals(id)){ //到时equals括号里的id就是Main里面输入的studentID,就是对应的实参，然后这个实参去和getID的值比较是否相等
@@ -80,6 +82,102 @@ public class Student {
     public String toString(){
         return " Your ID is: " + getTeacherID() + "\n" + " and your name is " + getTeacherName() + "\n";
     }
+
+    Scanner reader=new Scanner(System.in);
+    //Adding following variable to adapt to the array requirement
+    //将每个学生的ID放到一个数组，将每个学生的name放到一个数组,将每个学生的gender放到一个数组...
+    private String[] studentID;
+    private String[] studentName;
+    private char[] gender;
+    private String[] address;
+    private String[] status;
+    public void setStudentID(int i, String id){
+        studentID[i] = id;
+    }
+
+    public void setStudentName(int i, String name){
+        studentName[i]=name;
+    }
+
+    public void setGender(int i, char gender){
+        this.gender[i] = gender;
+    }  
+
+    public void setAddress(int i, String address){
+        this.address[i] = address;
+    }
+
+    public void setStatus(int i, String status){
+        this.status[i] = status;
+    }
+
+    public String getStudentID(int i){
+        return studentID[i];
+    }
+
+    public String getStudentName(int i){
+        return studentName[i];
+    }
+
+    public char getGender(int i){
+        return gender[i];
+    }
+
+    public String getAddress(int i){
+        return address[i];
+    }
+
+    public String getStatus(int i){
+        return status[i];
+    }
+
+    public Student(int size){
+        this.studentID = new String[size];
+        this.studentName = new String[size];
+        this.gender = new char[size];
+        this.address = new String[size];
+        this.status = new String[size];
+    }
+
+    public void addStudents(int size){
+        for(int i=0;i<size;i++){
+            System.out.println("Enter the student"+(i+1)+" ID:");
+            studentID[i]=reader.nextLine();
+            /*或者是 String id = reader.nextLine();
+             setStudentID(i,id); 
+             */
+            System.out.println("Enter the student"+(i+1)+" name:");
+            studentName[i]=reader.nextLine();
+            System.out.println("Enter the new student gender:" );
+            gender[i] = reader.nextLine().charAt(0);
+            System.out.println("Enter the new student address:" );
+            address[i] = reader.nextLine();
+            System.out.println("Enter the new student status:");
+            status[i] = reader.nextLine();
+        }//添加完这个对象的信息
+    }
+
+
+
+    public void diaplayRecentAddtions(int size){
+        for(int i=0;i<size;i++){
+            System.out.println("Following are the details of Student #" + (i+1) + "\n");
+            System.out.println("ID:" + getStudentID(i) + "\n");
+            System.out.println("Name:" + getStudentName(i) + "\n");
+            System.out.println("Gender:" + getGender(i) + "\n");
+            System.out.println("Address:" + getAddress(i) + "\n");
+            System.out.println("Status:" + getStatus(i) + "\n" + "\n");
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
 
